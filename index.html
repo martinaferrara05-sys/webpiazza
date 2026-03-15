@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sicilia in Piazza | Tour Unico</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .hidden { display: none; }
+    </style>
+</head>
+<body class="bg-stone-50 text-stone-800 font-sans">
+
+    <div id="home-page">
+        <header class="bg-amber-700 text-white py-12 text-center shadow-lg">
+            <h1 class="text-4xl font-bold uppercase tracking-widest">Piazze di Sicilia</h1>
+            <p class="mt-2 italic">Clicca su una piazza per esplorarla</p>
+        </header>
+
+        <main class="max-w-6xl mx-auto p-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div onclick="showPage('acireale')" class="cursor-pointer group relative overflow-hidden rounded-xl shadow-2xl transition-transform hover:scale-105">
+                    <img src="https://images.unsplash.com/photo-1541311545-0d7049449830?q=80&w=800" class="w-full h-80 object-cover">
+                    <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+                        <h2 class="text-white text-3xl font-bold uppercase">Acireale</h2>
+                    </div>
+                </div>
+
+                <div onclick="showPage('marzamemi')" class="cursor-pointer group relative overflow-hidden rounded-xl shadow-2xl transition-transform hover:scale-105">
+                    <img src="https://images.unsplash.com/photo-1616429555234-738942b00f13?q=80&w=800" class="w-full h-80 object-cover">
+                    <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+                        <h2 class="text-white text-3xl font-bold uppercase">Marzamemi</h2>
+                    </div>
+                </div>
+
+                <div onclick="showPage('siracusa')" class="cursor-pointer group relative overflow-hidden rounded-xl shadow-2xl transition-transform hover:scale-105">
+                    <img src="https://images.unsplash.com/photo-1555992336-fb0d29498b13?q=80&w=800" class="w-full h-80 object-cover">
+                    <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+                        <h2 class="text-white text-3xl font-bold uppercase">Siracusa</h2>
+                    </div>
+                </div>
+
+                <div onclick="showPage('palermo')" class="cursor-pointer group relative overflow-hidden rounded-xl shadow-2xl transition-transform hover:scale-105">
+                    <img src="https://images.unsplash.com/photo-1590050731006-2580df141be3?q=80&w=800" class="w-full h-80 object-cover">
+                    <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+                        <h2 class="text-white text-3xl font-bold uppercase">Palermo</h2>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div id="detail-page" class="hidden max-w-4xl mx-auto py-12 px-6">
+        <button onclick="showHome()" class="text-amber-700 font-bold hover:underline mb-8">← Torna alla Home</button>
+        
+        <div id="content-area">
+            </div>
+    </div>
+
+    <script>
+        // Database dei contenuti
+        const piazze = {
+            acireale: {
+                titolo: "Piazza Duomo, Acireale",
+                img: "https://images.unsplash.com/photo-1541311545-0d7049449830?q=80&w=1200",
+                desc: "Il salotto del Barocco acese, caratterizzato dalla pavimentazione in marmo e pietra lavica."
+            },
+            marzamemi: {
+                titolo: "Piazza Regina Margherita, Marzamemi",
+                img: "https://images.unsplash.com/photo-1616429555234-738942b00f13?q=80&w=1200",
+                desc: "Il cuore dell'antico borgo marinaro, famosa per le sue chiesette e l'atmosfera magica."
+            },
+            siracusa: {
+                titolo: "Piazza Duomo, Ortigia",
+                img: "https://images.unsplash.com/photo-1555992336-fb0d29498b13?q=80&w=1200",
+                desc: "Una delle piazze più belle d'Italia, dove la pietra bianca riflette la luce del sole siciliano."
+            },
+            palermo: {
+                titolo: "I Quattro Canti, Palermo",
+                img: "https://images.unsplash.com/photo-1590050731006-2580df141be3?q=80&w=1200",
+                desc: "Il centro storico di Palermo, un ottagono monumentale dove il barocco tocca il cielo."
+            }
+        };
+
+        function showPage(id) {
+            const piazza = piazze[id];
+            const contentArea = document.getElementById('content-area');
+            
+            contentArea.innerHTML = `
+                <h1 class="text-5xl font-black mb-6 text-amber-900">${piazza.titolo}</h1>
+                <img src="${piazza.img}" class="w-full h-96 object-cover rounded-2xl shadow-lg mb-8">
+                <p class="text-xl leading-relaxed">${piazza.desc}</p>
+            `;
+
+            document.getElementById('home-page').classList.add('hidden');
+            document.getElementById('detail-page').classList.remove('hidden');
+            window.scrollTo(0,0);
+        }
+
+        function showHome() {
+            document.getElementById('home-page').classList.remove('hidden');
+            document.getElementById('detail-page').classList.add('hidden');
+        }
+    </script>
+
+</body>
+</html>
